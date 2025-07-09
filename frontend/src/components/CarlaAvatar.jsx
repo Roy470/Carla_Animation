@@ -19,6 +19,65 @@ const CarlaAvatar = ({
   // Carla's image - you provided this beautiful professional avatar
   const carlaImage = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
 
+  // Speech synthesis function
+  const speakText = (text) => {
+    if ('speechSynthesis' in window && text) {
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'fr-FR';
+      utterance.rate = 0.9;
+      utterance.pitch = 1.1;
+      utterance.volume = 0.8;
+      
+      // Find a French voice
+      const voices = window.speechSynthesis.getVoices();
+      const frenchVoice = voices.find(voice => voice.lang.includes('fr')) || voices[0];
+      if (frenchVoice) {
+        utterance.voice = frenchVoice;
+      }
+      
+      utterance.onstart = () => {
+        setIsRealSpeaking(true);
+        setLipSync(true);
+        setHandGesture('talking');
+      };
+      
+      utterance.onend = () => {
+        setIsRealSpeaking(false);
+        setLipSync(false);
+        setHandGesture('idle');
+      };
+      
+      speechSynthRef.current = utterance;
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  // Hand gesture animations
+  const handGestures = {
+    idle: {
+      rotate: 0,
+      scale: 1,
+      transition: { duration: 0.5 }
+    },
+    talking: {
+      rotate: [-5, 5, -5],
+      scale: [1, 1.1, 1],
+      transition: { duration: 0.8, repeat: Infinity }
+    },
+    waving: {
+      rotate: [0, 20, -20, 0],
+      transition: { duration: 1, repeat: 3 }
+    },
+    pointing: {
+      rotate: 15,
+      scale: 1.2,
+      transition: { duration: 0.3 }
+    }
+  };
+
   // Animation states
   const animations = {
     idle: {
