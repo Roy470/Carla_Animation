@@ -55,25 +55,29 @@ const CarlaAvatar = ({
     }
   };
 
-  // Hand gesture animations
+  // Hand gesture animations - Plus réalistes
   const handGestures = {
     idle: {
       rotate: 0,
       scale: 1,
+      y: 0,
       transition: { duration: 0.5 }
     },
     talking: {
-      rotate: [-5, 5, -5],
-      scale: [1, 1.1, 1],
-      transition: { duration: 0.8, repeat: Infinity }
+      rotate: [-10, 10, -10],
+      scale: [1, 1.2, 1],
+      y: [0, -5, 0],
+      transition: { duration: 0.7, repeat: Infinity }
     },
     waving: {
-      rotate: [0, 20, -20, 0],
-      transition: { duration: 1, repeat: 3 }
+      rotate: [0, 25, -25, 0],
+      scale: [1, 1.3, 1.3, 1],
+      transition: { duration: 0.8, repeat: 2 }
     },
     pointing: {
-      rotate: 15,
-      scale: 1.2,
+      rotate: 25,
+      scale: 1.4,
+      y: -10,
       transition: { duration: 0.3 }
     }
   };
