@@ -191,7 +191,7 @@ const CarlaAvatar = ({
         >
           {/* Base Avatar Image - VOTRE Carla */}
           <img 
-            src="/carla.jpg"
+            src="/carla-avatar.jpg"
             alt="Carla Avatar"
             className="w-full h-full object-cover"
             style={{ 
