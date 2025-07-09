@@ -165,6 +165,9 @@ const CarlaControls = ({
               </Button>
             </div>
           </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium">Messages prédéfinis</label>
             <div className="space-y-1">
               {predefinedMessages.map((message, index) => (
                 <button
