@@ -189,9 +189,9 @@ const CarlaAvatar = ({
           animate={animations[currentAnimation]}
           style={emotionStyles[emotion]}
         >
-          {/* Base Avatar Image */}
+          {/* Base Avatar Image - VOTRE Carla */}
           <img 
-            src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop&crop=face"
+            src="/carla.jpg"
             alt="Carla Avatar"
             className="w-full h-full object-cover"
             style={{ 
@@ -200,16 +200,72 @@ const CarlaAvatar = ({
             }}
           />
 
-          {/* Mouth Animation Overlay */}
+          {/* Mouth Animation Overlay - Animation des lèvres */}
           <AnimatePresence>
             {mouthState === 'open' && (isRealSpeaking || isSpeaking) && (
               <motion.div
-                className="absolute bottom-24 left-1/2 transform -translate-x-1/2 w-6 h-3 bg-red-800 rounded-full"
+                className="absolute"
+                style={{
+                  bottom: '35%',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  width: '8px',
+                  height: '4px',
+                  background: 'rgba(139, 69, 19, 0.8)',
+                  borderRadius: '50%'
+                }}
                 initial={{ scaleY: 0 }}
                 animate={{ scaleY: 1 }}
                 exit={{ scaleY: 0 }}
                 transition={{ duration: 0.1 }}
               />
+            )}
+          </AnimatePresence>
+
+          {/* Hand Animation Overlays - Animation des mains */}
+          <AnimatePresence>
+            {(isRealSpeaking || isSpeaking) && (
+              <>
+                {/* Main gauche */}
+                <motion.div
+                  className="absolute"
+                  style={{
+                    bottom: '15%',
+                    left: '15%',
+                    width: '20px',
+                    height: '20px',
+                    background: '#F3E5AB',
+                    borderRadius: '50%',
+                    border: '2px solid #DDD'
+                  }}
+                  animate={{
+                    y: [0, -5, 0],
+                    rotate: [-10, 10, -10],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                />
+                
+                {/* Main droite */}
+                <motion.div
+                  className="absolute"
+                  style={{
+                    bottom: '15%',
+                    right: '15%',
+                    width: '20px',
+                    height: '20px',
+                    background: '#F3E5AB',
+                    borderRadius: '50%',
+                    border: '2px solid #DDD'
+                  }}
+                  animate={{
+                    y: [0, -5, 0],
+                    rotate: [10, -10, 10],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
+                />
+              </>
             )}
           </AnimatePresence>
           
