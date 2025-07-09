@@ -187,7 +187,7 @@ const CarlaAvatar = ({
         >
           {/* Base Avatar Image */}
           <img 
-            src="/api/placeholder/320/320" 
+            src="https://images.unsplash.com/photo-1494790108755-2616b332e234?q=80&w=400&h=400&fit=crop&crop=face"
             alt="Carla Avatar"
             className="w-full h-full object-cover"
             style={{ 
@@ -195,6 +195,19 @@ const CarlaAvatar = ({
               transform: isSpeaking ? 'scale(1.02)' : 'scale(1)'
             }}
           />
+
+          {/* Mouth Animation Overlay */}
+          <AnimatePresence>
+            {mouthState === 'open' && (isRealSpeaking || isSpeaking) && (
+              <motion.div
+                className="absolute bottom-20 left-1/2 transform -translate-x-1/2 w-8 h-4 bg-black bg-opacity-40 rounded-full"
+                initial={{ scaleY: 0 }}
+                animate={{ scaleY: 1 }}
+                exit={{ scaleY: 0 }}
+                transition={{ duration: 0.1 }}
+              />
+            )}
+          </AnimatePresence>
           
           {/* Blinking Overlay */}
           <AnimatePresence>
