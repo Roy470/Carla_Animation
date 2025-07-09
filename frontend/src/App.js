@@ -77,10 +77,10 @@ const CarlaAnimationApp = () => {
       {/* Title */}
       <div className="absolute top-8 left-8 z-20">
         <h1 className="text-4xl font-bold text-gray-800 mb-2">
-          Animation Carla
+          🗣️ Carla - Assistant Vocal Animé
         </h1>
         <p className="text-gray-600">
-          Système d'animation d'avatar avancé
+          Synthèse vocale • Mouvements labiaux • Gestes des mains
         </p>
       </div>
 
