@@ -139,7 +139,7 @@ const CarlaControls = ({
               disabled={!isActive || !customMessage.trim()}
               className="w-full"
             >
-              Faire parler Carla
+              🗣️ Parler avec Carla
             </Button>
           </div>
 
