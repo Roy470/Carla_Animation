@@ -120,20 +120,42 @@ const CarlaAvatar = ({
     return () => clearInterval(blinkInterval);
   }, []);
 
-  // Speech animation
+  // Speech animation - Real speech synthesis
   useEffect(() => {
-    if (isSpeaking) {
+    if (message && isSpeaking) {
+      speakText(message);
+    } else if (!isSpeaking && speechSynthRef.current) {
+      window.speechSynthesis.cancel();
+      setIsRealSpeaking(false);
+      setLipSync(false);
+      setHandGesture('idle');
+    }
+  }, [message, isSpeaking]);
+
+  // Lip sync animation
+  useEffect(() => {
+    if (lipSync && isRealSpeaking) {
+      const lipSyncInterval = setInterval(() => {
+        setMouthState(prev => prev === 'open' ? 'closed' : 'open');
+      }, 150);
+      return () => clearInterval(lipSyncInterval);
+    } else {
+      setMouthState('closed');
+    }
+  }, [lipSync, isRealSpeaking]);
+
+  // Original speech animation fallback
+  useEffect(() => {
+    if (isSpeaking && !isRealSpeaking) {
       setCurrentAnimation('speaking');
       const speechInterval = setInterval(() => {
         setMouthState(prev => prev === 'open' ? 'closed' : 'open');
       }, 200);
-
       return () => clearInterval(speechInterval);
     } else {
       setCurrentAnimation('idle');
-      setMouthState('closed');
     }
-  }, [isSpeaking]);
+  }, [isSpeaking, isRealSpeaking]);
 
   // Emotion-based animation
   useEffect(() => {
