@@ -224,7 +224,7 @@ const CarlaAvatar = ({
           </AnimatePresence>
 
           {/* Speaking Indicator */}
-          {isSpeaking && (
+          {(isSpeaking || isRealSpeaking) && (
             <motion.div
               className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
               animate={{ scale: [1, 1.2, 1] }}
@@ -233,6 +233,22 @@ const CarlaAvatar = ({
               <div className="w-3 h-3 bg-green-500 rounded-full shadow-lg" />
             </motion.div>
           )}
+
+          {/* Hand Gestures */}
+          <motion.div
+            className="absolute bottom-10 left-8 w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center"
+            animate={handGestures[handGesture]}
+          >
+            <span className="text-2xl">👋</span>
+          </motion.div>
+
+          <motion.div
+            className="absolute bottom-10 right-8 w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center"
+            animate={handGestures[handGesture]}
+            style={{ rotateY: 180 }}
+          >
+            <span className="text-2xl">👋</span>
+          </motion.div>
 
           {/* Emotion Particles */}
           {emotion === 'happy' && (
