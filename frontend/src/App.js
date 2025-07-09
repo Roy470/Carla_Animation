@@ -97,7 +97,7 @@ const CarlaAnimationApp = () => {
           <div className="flex items-center space-x-2 text-sm text-gray-600">
             <span>Émotion: {currentEmotion}</span>
             <span>•</span>
-            <span>{isSpeaking ? 'Parle' : 'Silencieuse'}</span>
+            <span>{isSpeaking ? 'Synthèse vocale active' : 'Silencieuse'}</span>
           </div>
         </div>
       </div>
