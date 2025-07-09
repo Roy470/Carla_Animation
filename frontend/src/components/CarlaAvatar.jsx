@@ -319,8 +319,25 @@ const CarlaAvatar = ({
       {/* Status Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
         <div className={`w-3 h-3 rounded-full ${isActive ? 'bg-green-500' : 'bg-gray-400'}`} />
-        <div className={`w-3 h-3 rounded-full ${isSpeaking ? 'bg-blue-500' : 'bg-gray-400'}`} />
+        <div className={`w-3 h-3 rounded-full ${(isSpeaking || isRealSpeaking) ? 'bg-blue-500' : 'bg-gray-400'}`} />
         <div className={`w-3 h-3 rounded-full ${emotion !== 'neutral' ? 'bg-purple-500' : 'bg-gray-400'}`} />
+        <div className={`w-3 h-3 rounded-full ${isRealSpeaking ? 'bg-red-500' : 'bg-gray-400'}`} />
+      </div>
+
+      {/* Voice Controls */}
+      <div className="absolute top-4 right-4 space-x-2">
+        <button
+          onClick={() => speakText("Bonjour ! Je suis Carla, votre assistante virtuelle.")}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm"
+        >
+          Test Voix
+        </button>
+        <button
+          onClick={() => window.speechSynthesis.cancel()}
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm"
+        >
+          Stop
+        </button>
       </div>
     </div>
   );
