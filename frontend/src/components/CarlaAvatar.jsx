@@ -181,7 +181,7 @@ const CarlaAvatar = ({
       >
         {/* Avatar Image with Animations */}
         <motion.div
-          className="relative w-80 h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white"
+          className="relative w-96 h-96 rounded-full overflow-hidden shadow-2xl border-4 border-white"
           animate={animations[currentAnimation]}
           style={emotionStyles[emotion]}
         >
