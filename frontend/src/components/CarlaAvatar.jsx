@@ -234,20 +234,20 @@ const CarlaAvatar = ({
             </motion.div>
           )}
 
-          {/* Hand Gestures */}
+          {/* Hand Gestures - Realistic positioning */}
           <motion.div
-            className="absolute bottom-10 left-8 w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center"
+            className="absolute bottom-16 left-12 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-lg border-2 border-amber-200"
             animate={handGestures[handGesture]}
           >
-            <span className="text-2xl">👋</span>
+            <span className="text-3xl">🤚</span>
           </motion.div>
 
           <motion.div
-            className="absolute bottom-10 right-8 w-12 h-12 bg-yellow-200 rounded-full flex items-center justify-center"
+            className="absolute bottom-16 right-12 w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center shadow-lg border-2 border-amber-200"
             animate={handGestures[handGesture]}
             style={{ rotateY: 180 }}
           >
-            <span className="text-2xl">👋</span>
+            <span className="text-3xl">🤚</span>
           </motion.div>
 
           {/* Emotion Particles */}
