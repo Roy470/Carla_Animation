@@ -48,24 +48,14 @@ const CarlaControls = ({
     if (customMessage.trim()) {
       onMessageChange(customMessage);
       onSpeechToggle(true);
-      
-      // Auto-stop speech after message duration
-      setTimeout(() => {
-        onSpeechToggle(false);
-        onMessageChange('');
-      }, customMessage.length * 100 + 2000);
+      // La synthèse vocale se déclenchera automatiquement dans CarlaAvatar
     }
   };
 
   const handlePredefinedMessage = (message) => {
     onMessageChange(message);
     onSpeechToggle(true);
-    
-    // Auto-stop speech after message duration
-    setTimeout(() => {
-      onSpeechToggle(false);
-      onMessageChange('');
-    }, message.length * 100 + 2000);
+    // La synthèse vocale se déclenchera automatiquement dans CarlaAvatar
   };
 
   return (
