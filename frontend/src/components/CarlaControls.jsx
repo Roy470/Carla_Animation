@@ -143,8 +143,28 @@ const CarlaControls = ({
             </Button>
           </div>
 
+          {/* Voice Controls */}
           <div className="space-y-2">
-            <label className="text-sm font-medium">Messages prédéfinis</label>
+            <label className="text-sm font-medium">Contrôles vocaux</label>
+            <div className="flex space-x-2">
+              <Button
+                onClick={() => window.speechSynthesis.cancel()}
+                variant="outline"
+                size="sm"
+                className="flex-1"
+              >
+                🔇 Stop
+              </Button>
+              <Button
+                onClick={() => setCustomMessage("")}
+                variant="outline"
+                size="sm"
+                className="flex-1"
+              >
+                🗑️ Effacer
+              </Button>
+            </div>
+          </div>
             <div className="space-y-1">
               {predefinedMessages.map((message, index) => (
                 <button
